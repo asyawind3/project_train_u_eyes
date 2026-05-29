@@ -1,3 +1,9 @@
+# Быстрый гайд по запуску
+
+1. Установите node и npm (проверить их установку можно командой `node -v` и `npm -v`)
+2. Запустите команду `npm install` для установки зависимостей
+3. Запустить команду `npm start` для запуска сайта
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
