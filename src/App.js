@@ -576,15 +576,15 @@ const content = {
       contactsTitle: "Контакты",
       contacts: {
         authors: [
-          ["Автор 1", "Кристина Рудая"],
-          ["Автор 2", "Анастасия Тихолоз"],
-          ["Автор 3", "Алиса Овсянникова"],
-          ["Автор 4", "Арина Клементьева"],
+          ["Технический писатель", "Кристина Рудая"],
+          ["Разработчик", "Анастасия Тихолоз"],
+          ["Менеджер", "Алиса Овсянникова"],
+          ["Дизайнер", "Арина Клементьева"],
         ],
         emailLabel: "Email",
         phoneLabel: "Телефон",
         email: "ourteam@sfedu.ru",
-        phone: "+777777777",
+        phone: "+79181234567",
         socials: [
           { title: "ВКонтакте", href: "#", icon: "/icons/vk.png" },
           { title: "MAX", href: "#", icon: "/icons/max.png" },
@@ -1244,6 +1244,8 @@ function App() {
   const doneAudioRef = useRef(null);
 
   const t = content[language];
+  
+  const activeSound = t.sounds.find((sound) => sound.id === activeSoundId);
 
   const selectedExercise = useMemo(() => {
     return t.exercises.find((exercise) => exercise.id === selectedExerciseId);
@@ -2210,13 +2212,25 @@ function App() {
           <h2>🍃 {t.navTitle}</h2>
 
           <nav className="main-nav">
-            {pageKeys.map((pageKey) => (
+  {pageKeys.map((pageKey) => (
               <button
                 key={pageKey}
                 className={activePage === pageKey ? "active-nav" : ""}
                 onClick={() => openPage(pageKey)}
               >
-                {t.pages[pageKey]}
+                <span className="nav-button-content">
+                  <span>{t.pages[pageKey]}</span>
+
+                  {pageKey === "exercises" && activeSound && (
+                    <span
+                      className="nav-sound-indicator"
+                      title={`Звук включён: ${activeSound.title}`}
+                      aria-label={`Звук включён: ${activeSound.title}`}
+                    >
+                      🔊
+                    </span>
+                  )}
+                </span>
               </button>
             ))}
           </nav>
